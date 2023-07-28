@@ -18,15 +18,19 @@ class Graph:
             self.vertex[start_vertex] = [end_vertex]
 
     def dfs(self) -> None:
+        """Implements Depth First Search using recursion."""
+
         # Create a new list with all elements as False
         visited = [False] * len(self.vertex)
 
-        # Call the helper function
+        # Call the helper method
         for i in range(len(self.vertex)):
             if not visited[i]:
                 self.dfs_recursive(i, visited)
 
     def dfs_recursive(self, start_vertex, visited) -> None:
+        """Helper method for Depth First Search."""
+
         # Mark vertex as visited
         visited[start_vertex] = True
 
@@ -36,3 +40,18 @@ class Graph:
         for i in self.vertex:
             if not visited[i]:
                 self.dfs_recursive(i, visited)
+
+    def dfs_stack(self, start_vertex) -> set[str]:
+        """Implements Depth First Search using a stack."""
+
+        explored, stack = set(start_vertex), [start_vertex]
+
+        while stack:
+            vertex = stack.pop()
+            explored.add(vertex)
+        
+            for adj in reversed(self.vertex[vertex]):
+                if adj not in explored:
+                    stack.append(adj)
+        
+        return explored
