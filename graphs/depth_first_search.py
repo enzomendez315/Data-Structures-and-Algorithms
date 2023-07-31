@@ -11,8 +11,8 @@ class Graph:
         """Prints a visual representation of the graph."""
 
         print(self.vertices)
-        for i in self.vertices:
-            print(i, " : ", " -> ".join([str(j) for j in self.vertices[i]]))
+        for vertex in self.vertices:
+            print(vertex, " : ", " -> ".join([str(adj) for adj in self.vertices[vertex]]))
 
     def add_edge(self, start_vertex, end_vertex) -> None:
         """Adds an edge between two vertices."""
@@ -66,7 +66,7 @@ class Graph:
         return visited
     
     """ General Implementation
-    Input: A graph with a list of edges and a starting vertex
+    Input: A graph with a list of edges and a starting vertex.
             If no starting vertex is provided, we will go through 
             each vertex in the graph.
     Output: 
