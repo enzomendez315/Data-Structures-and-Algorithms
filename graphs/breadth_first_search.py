@@ -21,7 +21,21 @@ class Graph:
             # Create a list with the vertex
             self.vertices[start_vertex] = [end_vertex]
 
-    """ The Algorithm Design Manual
+    def bfs(self, start_vertex) -> None:
+        """Implements Breadth First Search."""
+
+        visited = set()
+        queue = Queue()
+
+        while not queue.empty():
+            vertex = queue.get()
+
+            for adj in self.vertices[vertex]:
+                if adj not in visited:
+                    queue.put(adj)
+                    visited.add(adj)
+
+    """ The Algorithm Design Manual Pseudocode
     BFS(G,s)
         for each vertex u in the set of all vertices - {s}
             state[u] = "undiscovered"
@@ -41,8 +55,17 @@ class Graph:
             state[u] = "processed"
     """
 
-    """
-    BFS(u)
-        Mark u as visited.
-        Enqueue u.
+    """ Algorithms Pseudocode
+    bfs(G,s)
+        for all vertices u in the graph
+            dist[u] = infinity
+        
+        dist[s] = 0
+        Q = [s] (queue containing just s)
+        while Q is not empty
+            u = eject(Q)
+            for each v in adjacent vertices of u
+                if dist(v) = infinity
+                    inject(Q,v)
+                    dist[v] = dist[u] + 1
     """

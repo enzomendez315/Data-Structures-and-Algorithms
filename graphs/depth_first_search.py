@@ -27,13 +27,14 @@ class Graph:
     def dfs(self) -> None:
         """Implements Depth First Search using recursion."""
 
-        # Create a new list with all elements as False
-        visited = [False] * len(self.vertices)
+        # Create a new dictionary with the vertices as keys 
+        # and False as their values
+        visited = {key: False for key in self.vertices}
 
         # Call the helper method
-        for i in range(len(self.vertices)):
-            if not visited[i]:
-                self.dfs_recursive(i, visited)
+        for vertex in visited.keys():
+            if not visited[vertex]:
+                self.dfs_recursive(vertex, visited)
 
     def dfs_recursive(self, start_vertex, visited) -> None:
         """Helper method for Depth First Search."""
@@ -44,25 +45,25 @@ class Graph:
         print(start_vertex, end=" ")
 
         # Recur for all adjacent vertices 
-        for i in self.vertices:
-            if not visited[i]:
-                self.dfs_recursive(i, visited)
+        for adj in self.vertices[start_vertex]:
+            if not visited[adj]:
+                self.dfs_recursive(adj, visited)
 
     def dfs_stack(self, start_vertex) -> set[str]:
         """Implements Depth First Search using a stack."""
 
-        explored = set(start_vertex)
+        visited = set(start_vertex)
         stack = [start_vertex]
 
         while stack:
             vertex = stack.pop()
-            explored.add(vertex)
+            visited.add(vertex)
         
-            for adj in reversed(self.vertices[vertex]):
-                if adj not in explored:
+            for adj in self.vertices[vertex]:
+                if adj not in visited:
                     stack.append(adj)
         
-        return explored
+        return visited
     
     """ General Implementation
     Input: A graph with a list of edges and a starting vertex
