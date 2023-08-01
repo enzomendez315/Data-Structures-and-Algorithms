@@ -1,5 +1,5 @@
 """
-Prim's algorithm reveals a minimum spanning tree of 
+Kruskal's algorithm reveals a minimum spanning tree of 
 a weighted undirected graph.
 """
 
@@ -25,27 +25,25 @@ class Graph:
             self.vertices[start_vertex] = [end_vertex]
 
     """ The Algorithm Design Manual Pseudocode
-    prim(G)
-        select an arbitrary vertex s to start the tree from
-        while there are still nontree vertices
-            select the edge of minimum weight between a tree and nontree vertex
-            add the selected edge and vertex to the tree
+    kruskal(G)
+        put the edges in a priority queue ordered by weight
+        count = 0
+        while count < n-1
+            get next edge (u,v)
+            if component(u) != component(v)
+                add to tree
+                merge component(u) and component(v)
     """
 
     """ Algorithms Pseudocode
-    prim(G,weights)
+    kruskal(G,weights)
         for all vertices u in the graph
-            cost[u] = infinity
-            prev[u] = nil
-        pick any initial vertex s
-        cost[s] = 0
-
-        H = makequeue(V)    (priority queue, using cost-values as keys)
-        while H is not empty
-            v = deletemin(H)
-            for all edges (v,z)
-                if cost[z] > weight(v,z)
-                    cost[z] = weight(v,z)
-                    prev[z] = v
-                    decreasekey(H,z)
+            makeset(u)
+        
+        X = {}
+        sort the edges E by weight
+        for all edges (u,v) in increasing order of weight
+            if find(u) != find(v)
+                add edge (u,v) to X
+                union(u,v)
     """

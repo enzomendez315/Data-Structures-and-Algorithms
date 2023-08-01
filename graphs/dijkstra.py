@@ -1,3 +1,8 @@
+"""
+Dijkstra's algorithm reveals the shortest path in a weighted 
+graph with no negative edges.
+"""
+
 class Graph:
     def __init__(self) -> None:
         self.vertices = {}
@@ -42,7 +47,7 @@ class Graph:
             prev[u] = nil
         dist[s] = 0
 
-        H = makequeue(V)    (using dist-values as keys)
+        H = makequeue(V)    (priority queue, using dist-values as keys)
         while H is not empty
             u = deletemin(H)
             for each v in adjacent vertices of u
