@@ -33,7 +33,7 @@ BFS can also be used to verify that the graph is a _connected component_. That i
 
 Another use case for BFS could be implementing an algorithm that finds the path from a starting vertex _s_ to a vertex _u_. By storing each vertex's parent, we can reconstruct the path from _s_ to _u_ by working backward, following the chain of ancestors until we reach the root.
 
-In summary, these are the possible use cases for BFS:
+In summary, these are some of the possible use cases for BFS:
 - Finding the distance from a starting vertex to any other vertex that is reachable.
 - Finding the shortest path between two vertices.
 - Determining if there is a path between two vertices.
@@ -43,7 +43,7 @@ In summary, these are the possible use cases for BFS:
 ```python
 """
 Preconditions: A directed/undirected graph with no weights.
-Result: Shortest path.
+Result: Shortest path. Minimum spanning tree. Path finding. Cycle detection.
 """
 BFS(G,s)
     # Prepare all vertices
