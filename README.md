@@ -26,6 +26,26 @@ A stack is a type of container that supports retrieval by last-in, first-out (LI
 ### Tries
 
 ## Graphs
+### Breadth First Search
+BFS is most commonly used to locate the shortest path between a starting vertex and any other vertex that is reachable.
+
+```
+BFS(G,s)
+    for each vertex u in the set of all vertices - {s}
+        state[u] = "undiscovered"
+        parent[u] = nil (no parent is in the BFS tree)
+    state[s] = "discovered"
+    parent[s] = nil
+    Q = {s}
+    while Q != 0
+        u = dequeue[Q]
+        for each v in adjacent vertices of u    // Process vertex u
+            if state[v] = "undiscovered"        // Process edge (u,v)
+                state[v] = "discovered"
+                parent[v] = u
+                enqueue[Q,v]
+        state[u] = "processed"
+```
 
 ## Sorts
 Sorting is the basic building block that many other algorithms are built around. Here are the most popular sorting algorithms:
@@ -43,7 +63,7 @@ The base case of the recursion occurs when the subarray to be sorted consists of
 
 Because the recursion goes lg(n) levels deep, and a linear amount of work is done per level, mergesort takes _O(nlogn)_ time in the worst case. The efficiency of mergesort depends upon how efficiently we combine the two sorted halves into a single sorted list.
 
-```python
+```
 Mergesort(A[1,n])
     Merge(MergeSort(A[1,[n/2]]), MergeSort(A[n/2]+1,n))
 ```
