@@ -100,7 +100,7 @@ class Graph:
 
     """ The Algorithm Design Manual Pseudocode
     BFS(G,s)
-        for each vertex u in the set of all vertices - {s}
+        for each vertex u in the set of all vertices
             state[u] = "undiscovered"
             parent[u] = nil (no parent is in the BFS tree)
         state[s] = "discovered"
@@ -108,10 +108,8 @@ class Graph:
         Q = {s}
         while Q != 0
             u = dequeue[Q]
-            process vertex u    ?
-            for each v in adjacent vertices of u
-                process edge (u,v)  ?
-                if state[v] = "undiscovered"
+            for each v in adjacent vertices of u    # Process vertex u
+                if state[v] = "undiscovered"        # Process edge (u,v)
                     state[v] = "discovered"
                     parent[v] = u
                     enqueue[Q,v]
