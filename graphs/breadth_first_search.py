@@ -11,14 +11,12 @@ class Graph:
 
     def print_graph(self) -> None:
         """Prints a visual representation of the graph."""
-
         print(self.vertices)
         for vertex in self.vertices:
             print(vertex, " : ", " -> ".join([str(adj) for adj in self.vertices[vertex]]))
 
     def add_edge(self, start_vertex, end_vertex) -> None:
         """Adds an edge between two vertices."""
-
         if start_vertex in self.vertices:
             # Vertex is already present
             self.vertices[start_vertex].append(end_vertex)
@@ -28,7 +26,6 @@ class Graph:
 
     def bfs(self, start_vertex) -> list:
         """Implements Breadth First Search."""
-
         # A set for the visited vertices
         visited = {start_vertex}
 
@@ -47,7 +44,6 @@ class Graph:
                     visited.add(adj)
                     result.append(adj)
                     queue.put(adj)
-        
         return result
     
     def bfs_distance(self, start_vertex) -> dict:
@@ -56,7 +52,6 @@ class Graph:
         distance to all reachable vertices given a 
         starting vertex.
         """
-
         # The distances to all vertices reachable from start_vertex
         dist = {key: -1 for key in self.vertices}
 

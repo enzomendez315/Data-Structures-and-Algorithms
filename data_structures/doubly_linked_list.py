@@ -4,12 +4,14 @@ Implementation for a doubly linked list.
 
 class Node:
     def __init__(self, value) -> None:
+        """Constructs a Node."""
         self.value = value
         self.next = None
         self.prev = None
 
 class LinkedList:
     def __init__(self, value) -> None:
+        """Constructs a LinkedList."""
         new_node = Node(value)
         self.head = new_node
         self.tail = new_node

@@ -9,14 +9,12 @@ class Graph:
 
     def print_graph(self) -> None:
         """Prints a visual representation of the graph."""
-
         print(self.vertices)
         for vertex in self.vertices:
             print(vertex, " : ", " -> ".join([str(adj) for adj in self.vertices[vertex]]))
 
     def add_edge(self, start_vertex, end_vertex) -> None:
         """Adds an edge between two vertices."""
-
         if start_vertex in self.vertices:
             # Vertex is already present
             self.vertices[start_vertex].append(end_vertex)
@@ -26,7 +24,6 @@ class Graph:
 
     def dfs(self) -> None:
         """Implements Depth First Search using recursion."""
-
         # Create a new dictionary with the vertices as keys 
         # and False as their values
         visited = {key: False for key in self.vertices}
@@ -38,7 +35,6 @@ class Graph:
 
     def dfs_recursive(self, start_vertex, visited) -> None:
         """Helper method for Depth First Search."""
-
         # Mark vertex as visited
         visited[start_vertex] = True
 
@@ -51,7 +47,6 @@ class Graph:
 
     def dfs_stack(self, start_vertex) -> set[str]:
         """Implements Depth First Search using a stack."""
-
         visited = set(start_vertex)
         stack = [start_vertex]
 
