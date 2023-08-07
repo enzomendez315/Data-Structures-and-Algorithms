@@ -1,5 +1,5 @@
 # Data Structures and Algorithms
-This is a manual showing the implementation and usage of popular algorithms and data structures using Python.
+This guide shows the implementation and usage of popular algorithms and data structures using Python.
 
 # Data Structures
 ## Arrays
