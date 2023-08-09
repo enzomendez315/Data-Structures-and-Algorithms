@@ -3,64 +3,21 @@ Depth First Search reveals what parts of the graph are reachable from a given
 vertex. 
 """
 
-class Graph:
-    def __init__(self) -> None:
-        self.vertices = {}
+def dfs(G, current, goal):
+    """Implements Depth First Search using recursion."""
 
-    def print_graph(self) -> None:
-        """Prints a visual representation of the graph."""
-        print(self.vertices)
-        for vertex in self.vertices:
-            print(vertex, " : ", " -> ".join([str(adj) for adj in self.vertices[vertex]]))
-
-    def add_edge(self, start_vertex, end_vertex) -> None:
-        """Adds an edge between two vertices."""
-        if start_vertex in self.vertices:
-            # Vertex is already present
-            self.vertices[start_vertex].append(end_vertex)
-        else:
-            # Create a list with the vertex
-            self.vertices[start_vertex] = [end_vertex]
-
-    def dfs(self) -> None:
-        """Implements Depth First Search using recursion."""
-        # Create a new dictionary with the vertices as keys 
-        # and False as their values
-        visited = {key: False for key in self.vertices}
-
-        # Call the helper method
-        for vertex in visited.keys():
-            if not visited[vertex]:
-                self.dfs_recursive(vertex, visited)
-
-    def dfs_recursive(self, start_vertex, visited) -> None:
-        """Helper method for Depth First Search."""
-        # Mark vertex as visited
-        visited[start_vertex] = True
-
-        print(start_vertex, end=" ")
-
-        # Recur for all adjacent vertices 
-        for adj in self.vertices[start_vertex]:
-            if not visited[adj]:
-                self.dfs_recursive(adj, visited)
-
-    def dfs_stack(self, start_vertex) -> set[str]:
-        """Implements Depth First Search using a stack."""
-        visited = set(start_vertex)
-        stack = [start_vertex]
-
-        while stack:
-            vertex = stack.pop()
-            visited.add(vertex)
-        
-            for adj in self.vertices[vertex]:
-                if adj not in visited:
-                    stack.append(adj)
-        
-        return visited
+    if current == goal:
+        return [current]
     
-def BFS(G, start, goal):
+    for next in G.vertices[current]:
+        result = dfs(G, next)
+        if result != None:
+            return [current] + result
+    
+    return None
+    
+def dfs_stack(G, start, goal):
+    """Implements Depth First Search using a stack."""
     # G is a graph with vertices V and edges E.
     V,E = G
     stack = [start]

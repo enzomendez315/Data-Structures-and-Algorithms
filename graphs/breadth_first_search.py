@@ -4,75 +4,13 @@ and all the vertices that are reachable from that vertex.
 """
 
 from queue import Queue
-
-class Graph:
-    def __init__(self) -> None:
-        self.vertices = {}
-
-    def print_graph(self) -> None:
-        """Prints a visual representation of the graph."""
-        print(self.vertices)
-        for vertex in self.vertices:
-            print(vertex, " : ", " -> ".join([str(adj) for adj in self.vertices[vertex]]))
-
-    def add_edge(self, start_vertex, end_vertex) -> None:
-        """Adds an edge between two vertices."""
-        if start_vertex in self.vertices:
-            # Vertex is already present
-            self.vertices[start_vertex].append(end_vertex)
-        else:
-            # Create a list with the vertex
-            self.vertices[start_vertex] = [end_vertex]
-
-    def bfs(self, start_vertex) -> list:
-        """Implements Breadth First Search."""
-        # A set for the visited vertices
-        visited = {start_vertex}
-
-        # A list with the order given by bfs
-        result = [start_vertex]
-
-        # To process the vertices in order
-        queue = Queue()
-        queue.put(start_vertex)
-
-        while not queue.empty():
-            vertex = queue.get()
-            # Visit neighbors
-            for adj in self.vertices[vertex]:
-                if adj not in visited:
-                    visited.add(adj)
-                    result.append(adj)
-                    queue.put(adj)
-        return result
     
-    def bfs_distance(self, start_vertex) -> dict:
-        """
-        Implements Breadth First Search to find the 
-        distance to all reachable vertices given a 
-        starting vertex.
-        """
-        # The distances to all vertices reachable from start_vertex
-        dist = {key: -1 for key in self.vertices}
-
-        # To process the vertices in order
-        queue = Queue()
-
-        # Set distance to itself
-        dist[start_vertex] = 0
-
-        queue.put(start_vertex)
-        while not queue.empty():
-            vertex = queue.get()
-            # Visit neighbors
-            for adj in self.vertices[vertex]:
-                if dist[adj] == -1:
-                    queue.put(adj)
-                    dist[adj] = dist[vertex] + 1
-
-        return dist
-    
-def BFS(G, start, goal):
+def bfs(G, start, goal) -> bool:
+    """
+    Implements Breadth First Search to see if 
+    there is a path between a starting vertex 
+    and another vertex.
+    """
     # G is a graph with vertices V and edges E.
     V,E = G
     queue = Queue()
@@ -92,6 +30,33 @@ def BFS(G, start, goal):
 
     # Did not find the goal.
     return False
+
+def bfs_dist(G, start) -> dict:
+    """
+    Implements Breadth First Search to find the 
+    distance to all reachable vertices given a 
+    starting vertex.
+    """
+    # The distances to all vertices reachable from start.
+    dist = {key: -1 for key in G.vertices}
+
+    # To process the vertices in order
+    queue = Queue()
+    queue.put(start)
+
+    # Set distance to itself
+    dist[start] = 0
+
+    while not queue.empty():
+        current = queue.get()
+
+        # Visit neighbors
+        for adj in G.vertices[current]:
+            if dist[adj] == -1:
+                queue.put(adj)
+                dist[adj] = dist[current] + 1
+
+    return dist
     
 """ General Implementation
 Input: A graph with a list of edges and a starting vertex
