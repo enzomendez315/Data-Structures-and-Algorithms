@@ -1,6 +1,6 @@
 """
-Depth First Search reveals what parts of the graph are reachable from a given 
-vertex. 
+Preconditions: A directed/undirected graph with no weights.
+Result: Path finding. Cycle detection.
 """
 
 def dfs(G, current, goal):
