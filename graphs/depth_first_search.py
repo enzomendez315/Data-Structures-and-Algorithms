@@ -60,6 +60,25 @@ class Graph:
         
         return visited
     
+def BFS(G, start, goal):
+    # G is a graph with vertices V and edges E.
+    V,E = G
+    stack = [start]
+    visited = set()
+
+    while stack:
+        current = stack.pop()
+        visited.add(current)
+
+        if current == goal:
+            return True
+
+        for vertex in G.edges[V]:
+            if not vertex in visited:
+                stack.append(vertex)
+
+    # Did not find the goal.
+    return False
     
 """ General Implementation
 Input: A graph with a list of edges and a starting vertex.
@@ -68,7 +87,7 @@ Input: A graph with a list of edges and a starting vertex.
 Output: 
 
 Overhead (what you need):
-- Dictionary to store "visited" vertices
+- Set to store "visited" vertices
 - Variable that keeps track of time
 - Dictionary to store "parents" of vertices
 

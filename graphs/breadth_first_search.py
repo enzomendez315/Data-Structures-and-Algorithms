@@ -72,27 +72,26 @@ class Graph:
 
         return dist
     
-def BFS(G, start, end):
+def BFS(G, start, goal):
     # G is a graph with vertices V and edges E.
     V,E = G
     queue = Queue()
     visited = set()
-    queue.put([start])
+    queue.put(start)
 
     while not queue.empty():
-        path = queue.get()
-        current = path[0]
-        if not current in visited:
-            visited.add(current)
+        current = queue.get()
+        visited.add(current)
 
-            if current == end:
-                return path
-            
-            for vertex in G.edges[V]:
-                if not vertex in visited:
-                    queue.put([vertex] + path)
+        if current == goal:
+            return True
 
-    return []
+        for vertex in G.edges[V]:
+            if not vertex in visited:
+                queue.put(vertex)
+
+    # Did not find the goal.
+    return False
     
 """ General Implementation
 Input: A graph with a list of edges and a starting vertex
