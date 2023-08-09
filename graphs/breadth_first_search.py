@@ -5,14 +5,12 @@ Result: Shortest path. Minimum spanning tree. Path finding. Cycle detection.
 
 from queue import Queue
     
-def bfs(G, start, goal) -> bool:
+def bfs(G, start, goal):
     """
     Implements Breadth First Search to see if 
     there is a path between a starting vertex 
     and another vertex.
     """
-    # G is a graph with vertices V and edges E.
-    V,E = G
     queue = Queue()
     visited = set()
     queue.put(start)
@@ -24,14 +22,14 @@ def bfs(G, start, goal) -> bool:
         if current == goal:
             return True
 
-        for vertex in G.edges[V]:
-            if not vertex in visited:
-                queue.put(vertex)
+        for adj in G.vertices[current]:
+            if not adj in visited:
+                queue.put(adj)
 
     # Did not find the goal.
     return False
 
-def bfs_dist(G, start) -> dict:
+def bfs_dist(G, start):
     """
     Implements Breadth First Search to find the 
     distance to all reachable vertices given a 

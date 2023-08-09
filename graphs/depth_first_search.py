@@ -5,7 +5,6 @@ Result: Path finding. Cycle detection.
 
 def dfs(G, current, goal):
     """Implements Depth First Search using recursion."""
-
     if current == goal:
         return [current]
     
@@ -18,8 +17,6 @@ def dfs(G, current, goal):
     
 def dfs_stack(G, start, goal):
     """Implements Depth First Search using a stack."""
-    # G is a graph with vertices V and edges E.
-    V,E = G
     stack = [start]
     visited = set()
 
@@ -30,9 +27,9 @@ def dfs_stack(G, start, goal):
         if current == goal:
             return True
 
-        for vertex in G.edges[V]:
-            if not vertex in visited:
-                stack.append(vertex)
+        for adj in G.vertices[current]:
+            if not adj in visited:
+                stack.append(adj)
 
     # Did not find the goal.
     return False
