@@ -26,7 +26,7 @@ def bfs(G, start, goal):
             if not adj in visited:
                 queue.put(adj)
 
-    # Did not find the goal.
+    # Did not find the goal
     return False
 
 def bfs_dist(G, start):
@@ -35,7 +35,7 @@ def bfs_dist(G, start):
     distance to all reachable vertices given a 
     starting vertex.
     """
-    # The distances to all vertices reachable from start.
+    # The distances to all vertices reachable from start
     dist = {key: -1 for key in G.vertices}
 
     # To process the vertices in order

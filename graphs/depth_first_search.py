@@ -31,7 +31,7 @@ def dfs_stack(G, start, goal):
             if not adj in visited:
                 stack.append(adj)
 
-    # Did not find the goal.
+    # Did not find the goal
     return False
     
 """ General Implementation

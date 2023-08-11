@@ -4,7 +4,26 @@ a weighted undirected graph.
 """
 
 def kruskal(G):
-    pass
+    """Implements Kruskal's algorithm."""
+    result = []
+
+    # i used for sorted edges
+    # e used for result[]
+    i, e = 0, 0
+
+    # Sort edges in increasing order of weight
+    G = sorted(G, key=lambda item: item[2])
+    parent = {}
+    rank = {}
+
+    for node in range(G.vertices):
+        parent.append(node)
+        rank.append(0)
+
+    while e < G.vertices - 1:
+        u, v, w = G[i]
+        i += 1
+
 
     """ The Algorithm Design Manual Pseudocode
     kruskal(G)
