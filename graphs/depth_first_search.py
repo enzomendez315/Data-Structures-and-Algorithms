@@ -28,7 +28,7 @@ def dfs_stack(G, start, goal):
             return True
 
         for adj in G.vertices[current]:
-            if not adj in visited:
+            if adj not in visited:
                 stack.append(adj)
 
     # Did not find the goal

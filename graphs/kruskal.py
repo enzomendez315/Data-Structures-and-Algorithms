@@ -21,9 +21,15 @@ def kruskal(G):
     parent = {}
     rank = {}
 
-    for node in range(G.vertices):
-        parent.append(node[0])
-        rank.append(0)
+    for edge in G.vertices:
+        # Put all source nodes as keys
+        if edge[0] not in parent.keys():
+            parent[edge[0]] = None
+            rank[edge[0]] = 0
+        # Put all destination nodes as keys
+        if edge[1] not in parent.keys():
+            parent[edge[1]] = None
+            rank[edge[1]] = 0
 
     while edges < G.vertices - 1:
         src, dst, weight = G[i]
@@ -37,41 +43,45 @@ def kruskal(G):
             union(parent, rank, x, y)
         # else discard the edge
 
-def find(parent, i):
-    if parent[i] != i:
-        parent[i] = find(parent, parent[i])
-    return parent[i]
+def find(parent, node):
+    # Looks for root.
+    if parent[node] != node:
+        parent[node] = find(parent, parent[node])
+    return parent[node]
 
 def union(parent, rank, x, y):
+    # Attach smaller rank tree under root of
+    # high rank tree
     if rank[x] < rank[y]:
         parent[x] = y
     elif rank[x] > rank[y]:
         parent[y] = x
+    # If ranks are the same, make one as root 
+    # and increment its rank by one
     else:
         parent[y] = x
         rank[x] += 1
 
+""" The Algorithm Design Manual Pseudocode
+kruskal(G)
+    put the edges in a priority queue ordered by weight
+    count = 0
+    while count < n-1
+        get next edge (u,v)
+        if component(u) != component(v)
+            add to tree
+            merge component(u) and component(v)
+"""
 
-    """ The Algorithm Design Manual Pseudocode
-    kruskal(G)
-        put the edges in a priority queue ordered by weight
-        count = 0
-        while count < n-1
-            get next edge (u,v)
-            if component(u) != component(v)
-                add to tree
-                merge component(u) and component(v)
-    """
-
-    """ Algorithms Pseudocode
-    kruskal(G,weights)
-        for all vertices u in the graph
-            makeset(u)
-        
-        X = {}
-        sort the edges E by weight
-        for all edges (u,v) in increasing order of weight
-            if find(u) != find(v)
-                add edge (u,v) to X
-                union(u,v)
-    """
+""" Algorithms Pseudocode
+kruskal(G,weights)
+    for all vertices u in the graph
+        makeset(u)
+    
+    X = {}
+    sort the edges E by weight
+    for all edges (u,v) in increasing order of weight
+        if find(u) != find(v)
+            add edge (u,v) to X
+            union(u,v)
+"""
