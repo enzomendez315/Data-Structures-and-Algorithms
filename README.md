@@ -87,6 +87,35 @@ DFS(G,u)
     time = time + 1
 ```
 
+**DFS runs in _O(|V|+|E|)_.**
+```python
+"""
+Preconditions: A directed/undirected graph with no weights.
+Result: Shortest path. Minimum spanning tree. Path finding. Cycle detection.
+"""
+BFS(G,s)
+    # Prepare all vertices
+    for each vertex u in the set of all vertices
+        dist[u] = infinity
+        parent[u] = nil
+
+    # Prepare starting vertex
+    dist[s] = 0
+    parent[s] = nil
+    Q = {s}
+
+    # Do work while queue isn't empty
+    while Q != 0
+        # Process next vertex
+        u = dequeue[Q]
+        # Process neighbors
+        for each v in adjacent vertices of u
+            if dist[v] = infinity
+                dist[v] = dist[u] + 1
+                parent[v] = u
+                enqueue[Q,v]
+```
+
 # Sorts
 Sorting is the basic building block that many other algorithms are built around. Here are the most popular sorting algorithms:
 
