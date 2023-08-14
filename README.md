@@ -93,7 +93,7 @@ DFS(G,u)
 Preconditions: A directed/undirected graph with no weights.
 Result: Shortest path. Minimum spanning tree. Path finding. Cycle detection.
 """
-BFS(G,s)
+DFS(G,s)
     # Prepare all vertices
     for each vertex u in the set of all vertices
         dist[u] = infinity
