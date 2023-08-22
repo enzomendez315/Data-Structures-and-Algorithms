@@ -91,7 +91,7 @@ DFS(G,u)
 ```python
 """
 Preconditions: A directed/undirected graph with no weights.
-Result: Shortest path. Minimum spanning tree. Path finding. Cycle detection.
+Result: Path finding. Cycle detection.
 """
 DFS(G,s)
     # Prepare all vertices
